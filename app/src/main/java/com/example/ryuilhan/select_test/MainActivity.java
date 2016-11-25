@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
     CheckBox CH1;
     LinearLayout LL;
     Button B1;
+    Button B2;
     RadioGroup RG1;
     RadioButton RB1;
     RadioButton RB2;
     RadioButton RB3;
     ImageView IV1;
+    Switch SW1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +34,20 @@ public class MainActivity extends AppCompatActivity {
 
         LL = (LinearLayout)findViewById(R.id.LinearLayout1);
 
-        CH1 = (CheckBox)findViewById(R.id.checkBox);
-        CH1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        SW1 = (Switch)findViewById(R.id.switch1);
+        SW1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(CH1.isChecked()){
+                if(SW1.isChecked()){
                     LL.setVisibility(View.VISIBLE);
-                }
-                else {
+                }else{
                     LL.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
         B1 = (Button)findViewById(R.id.button);
+        B2 = (Button)findViewById(R.id.button2);
         RG1 = (RadioGroup)findViewById(R.id.radioGroup);
         RB1 = (RadioButton)findViewById(R.id.radioButton);
         RB2 = (RadioButton)findViewById(R.id.radioButton2);
@@ -54,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         RG1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                IV1.setVisibility(View.INVISIBLE);
                 if(RB1.isChecked()){
                     IV1.setImageResource(R.drawable.images);
                 }else if(RB2.isChecked()){
@@ -64,18 +66,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        B1.setOnClickListener(new View.OnClickListener() {
+
+        B2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IV1.setVisibility(View.VISIBLE);
+                finish();
             }
         });
 
-
-
-
-
-
+        B1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    LL.setVisibility(View.GONE);
+                    SW1.setChecked(false);
+            }
+        });
     }
 }
 
